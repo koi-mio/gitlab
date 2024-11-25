@@ -1,0 +1,55 @@
+image: alpine:latest
+
+bash_execute:
+  script:
+    - mkdir public
+    - cp index.html js.js css.css public/
+    - echo "name is $NAME"
+    - echo "Password is $PASS"
+    - echo "CI:pipeline created $CI_PIPELINE_CREATED_AT"
+    - echo "CI:pipeline Author $CI_COMMIT_AUTHOR"
+    - echo "CI:pipeline JobId $CI_JOB_ID"
+    - echo "CI:pipeline Commit $CI_COMMIT_SHA"
+    - echo "CI:pipeline Commit-Ref $CI_COMMIT_REF_NAME"
+    - echo "CI:pipeline commit-ref-slug $CI_COMMIT_REF_SLUG"
+    - echo "CI:pipeline id $CI_PIPELINE_ID"
+    - echo "CI:pipeline project id $CI_PROJECT_ID"
+    - echo "CI:pipeline project name $CI_PROJECT_NAME"
+    - echo "CI:pipeline project namespace $CI_PROJECT_NAMESPACE"
+    - echo "CI:pipeline project url $CI_PROJECT_URL"
+    - echo "CI:pipeline job duration $CI_JOB_DURATION"
+    - echo "CI:pipeline runner id $CI_RUNNER_ID"
+    - echo "CI:pipeline runner description $CI_RUNNER_DESCRIPTION"
+    - echo "CI:pipeline runner version $CI_RUNNER_VERSION"
+    - echo "CI:pipeline server url $CI_SERVER_URL"
+    - echo "CI:pipeline url $CI_PIPELINE_URL"
+    - echo "CI:pipeline server version $CI_SERVER_VERSION"
+    - echo "CI:pipeline server revision $CI_SERVER_REVISION"
+    - echo "Building the project"
+    - echo "Pipeline ID $CI_PIPELINE_ID"
+    - echo "Job ID $CI_JOB_ID"
+    - echo "Commit SHA $CI_COMMIT_SHA"
+    - echo "Project Name $CI_PROJECT_NAME"
+    - echo "Runner ID $CI_RUNNER_ID"
+    - echo "Pipeline Source $CI_PIPELINE_SOURCE"
+    - echo "Job Name $CI_JOB_NAME"
+    - echo "Commit Ref Name $CI_COMMIT_REF_NAME"
+    - echo "Project Path $CI_PROJECT_PATH"
+    - echo "Runner Description $CI_RUNNER_DESCRIPTION"
+    - echo "Pipeline Created At $CI_PIPELINE_CREATED_AT"
+    - echo "Job Stage $CI_JOB_STAGE"
+    - echo "Commit Title $CI_COMMIT_TITLE"
+    - echo "Project URL $CI_PROJECT_URL"
+    - echo "Runner Tags $CI_RUNNER_TAGS"
+    - echo "Environment URL $CI_ENVIRONMENT_URL"
+
+  artifacts:
+    paths:
+      - "public"
+    untracked: false
+    when: on_success
+    access: all
+    expire_in: 30 days
+
+  only:
+    - main
